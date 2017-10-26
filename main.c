@@ -4,9 +4,6 @@
 #include <sys/time.h>
 #include <string.h>
 #include <ctype.h>
-#include <likwid.h>
-
-#define USE_LIKWID_PERFCTR
 
 int generateRandomDiagonal( unsigned int N, unsigned int k, unsigned int nBandas, double *diag ){
   int i;
@@ -110,7 +107,6 @@ void multiplica_matriz_vetor(double *destino, double *A, double *vetor, unsigned
   int i, j, aux, aux2, aux3;
   aux3 = n - 4;
 
-    likwid_markerStartRegion("mult_matriz");
     for (i = 0; i < aux3; i += 4) {
         destino[i] = A[i] * vetor[i];
         destino[i+1] = A[i+1] * vetor[i+1];
@@ -146,7 +142,6 @@ void multiplica_matriz_vetor(double *destino, double *A, double *vetor, unsigned
             aux2--;
         }
     } 
-    likwid_markerStopRegion("mult_matriz");
 }
 
 void calculaS(double aux, double *v, double *z, double *minimiza, unsigned int n) { // S = minimiza
@@ -154,9 +149,7 @@ void calculaS(double aux, double *v, double *z, double *minimiza, unsigned int n
     int i, aux2;
     aux2 = n - 4;
 
-    mult = (double)0;
-
-    likwid_markerStartRegion("mult_vetor");  
+    mult = (double)0; 
 
     for (i = 0; i < aux2; i += 4) {
         mult += v[i] * z[i];
@@ -167,8 +160,6 @@ void calculaS(double aux, double *v, double *z, double *minimiza, unsigned int n
 
     for (; i < n; i++) 
         mult += v[i] * z[i];
-
-    likwid_markerStopRegion("mult_vetor");
 
     if (mult != (double)0)
         *minimiza = aux / mult;
@@ -251,7 +242,6 @@ void imprime_resultados(double tempoMetodoMin, double tempoMetodoMedia, double t
 
 
 int main(int argc, char *argv[]){
-    likwid_markerInit();
     int i, p, maxIter;
     int n, nBandas; // Variáveis para armanezar os parâmetros digitados no terminal
     double tol;
@@ -314,7 +304,6 @@ int main(int argc, char *argv[]){
             tempoMetodoMax = tempoM;
 
     } //fim da execução do método
-    likwid_markerClose();
     free(diagonais);
     free(z);
     free(v);
