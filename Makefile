@@ -1,10 +1,10 @@
-FLAGS=-Wall -DLIKWID_PERFMON -O3 -llikwid -mavx -march=native
+FLAGS=-Wall -O3
 
 all: main.o
-	@gcc -o cgSolver main.o -L/home/soft/likwid/lib  $(FLAGS) -lm
+	@gcc -o cgSolver main.o $(FLAGS) -lm
 
 main.o: main.c
-	@gcc -o main.o -c main.c -I/home/soft/likwid/include $(FLAGS)
+	@gcc -o main.o -c main.c $(FLAGS)
 
 help: 
 	@echo ".cgSolver n nBanda -i <maxIter> -t <tolerancia> -o <saida>"
