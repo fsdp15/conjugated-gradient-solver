@@ -1,4 +1,4 @@
-This is an implementation of the Conjugated Gradient method just for testing purposes. It generates a random sparse matrix and uses a singe array to store it.
+This is an implementation of the Conjugated Gradient method just for testing purposes. It generates a random sparse matrix and uses a single array to store it.
 
 Operation: 
 
