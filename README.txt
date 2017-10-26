@@ -5,4 +5,4 @@ Operation:
 make
 ./cgSolver n nBands -i <maxIter> -t <error tolerancy> -o <output.txt>
 
-This project idea belongs to Daniel Weingaertner (https://web.inf.ufpr.br/danielw/).
+This project idea belongs to Daniel Weingaertner (https://web.inf.ufpr.br/danielw/). The implementation was made by me and Alexey Gabriel Papaleixou.
